@@ -1,0 +1,21 @@
+.error {
+  color: #ef5350;
+}
+
+form {
+  @media screen and (min-width: 500px) {
+    display: flex !important;
+    >button {
+      flex: 1;
+      margin-top: 22px;
+    }
+  }
+  >button {
+    width: 100%;
+  }
+  .textInput {
+    flex: 4;
+  }
+}
+
+
