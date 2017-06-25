@@ -5,7 +5,6 @@ import BookSearchSlider from './BookSearchSlider';
 class BookSearchResult extends React.Component {
   constructor(props, context) {
     super(props, context);
-    console.log(this.props.bookSearch.costRange.val)
     this.state = {
       priceOnSlider: this.props.bookSearch.costRange.val
     };
@@ -39,7 +38,7 @@ class BookSearchResult extends React.Component {
   }
 
   render() {
-    const { costRange: {min, max, val}, list } = this.props.bookSearch;
+    const { costRange: {min, max}, list } = this.props.bookSearch;
     const currency = "$";
     const priceOnSlider = this.state.priceOnSlider;
     return (
@@ -52,7 +51,7 @@ class BookSearchResult extends React.Component {
               onChange={this.onSliderChange} 
               min={min} 
               max={max} 
-              defaultValue={val} 
+              defaultValue={priceOnSlider} 
               unit={currency}
             />
             <div className="row">
