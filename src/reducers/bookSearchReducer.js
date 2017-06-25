@@ -13,7 +13,7 @@ const setCostRange = (books) => {
     max = price > max ? price : max;
   }
   [min, max] = [Math.floor(min), Math.ceil(max)];
-  return {min, max, val: max};
+  return {min, max, val: min};
 }
 
 
