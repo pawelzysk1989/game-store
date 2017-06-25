@@ -20,7 +20,6 @@ const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 $(document).ready(function(){
-  $('.button-collapse').sideNav();
   $('.collapsible').collapsible();
 });
 

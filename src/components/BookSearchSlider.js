@@ -4,7 +4,7 @@ import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
-const GameSearchSlider = (props) => {
+const BookSearchSlider = (props) => {
   const onChange = (value) => {
     props.onChange(value);
   };
@@ -32,7 +32,7 @@ const GameSearchSlider = (props) => {
   );
 };
 
-GameSearchSlider.propTypes = {
+BookSearchSlider.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   unit: PropTypes.string,
@@ -42,8 +42,8 @@ GameSearchSlider.propTypes = {
   defaultValue: PropTypes.number.isRequired
 };
 
-GameSearchSlider.defaultProps = {
+BookSearchSlider.defaultProps = {
   unit: ''
 };
 
-export default GameSearchSlider;
+export default BookSearchSlider;

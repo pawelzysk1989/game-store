@@ -1,11 +1,11 @@
 export default {
-  gameSearch: {
-    resultList: [],
-    searchText: '',
-    searchCostRange: {
+  bookSearch: {
+    list: [],
+    nameText: '',
+    costRange: {
       min: 0,
-      max: 100,
-      val: 50
+      max: 0,
+      val: 0
     }
   }
 };
