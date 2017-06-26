@@ -6,13 +6,13 @@ class BookSearchForm extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      searching: false,
       bookSearch: {
         name: this.props.nameText
       },
       errors: {}
     };
     this.onInputChange = this.onInputChange.bind(this);
-    this.onSliderChange = this.onSliderChange.bind(this);
     this.searchForBooks = this.searchForBooks.bind(this);
   }
 
@@ -21,7 +21,15 @@ class BookSearchForm extends React.Component {
     if (!this.isFormValid()) {
       return;
     }
-    this.props.bookSearchAction(this.state.bookSearch);
+    this.setState({ searching: true});
+    this.props.bookSearchAction(this.state.bookSearch)
+      .then(() => {
+        this.setState({ searching: false});
+      })
+      .catch((error) => {
+        this.setState({ searching: false});
+        alert(error.response.data.error);
+      });
   }
 
   isFormValid() {
@@ -49,10 +57,6 @@ class BookSearchForm extends React.Component {
     });
   }
 
-  onSliderChange(value) {
-    console.log(value);
-  }
-
   render() {
     return (
       <form onSubmit={this.searchForBooks}>
@@ -63,7 +67,7 @@ class BookSearchForm extends React.Component {
           value={this.state.bookSearch.name}
           error={this.state.errors.name}
         />
-        <button className="btn waves-effect waves-light" type="submit" name="action">Search
+        <button className={`btn waves-effect waves-light ${this.state.searching ? 'disabled' : ''}`} type="submit" name="action">Search
           <i className="material-icons right">search</i>
         </button>
       </form>

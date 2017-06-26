@@ -30,6 +30,7 @@
   "author": "Pawel Zysk",
   "license": "MIT",
   "dependencies": {
+    "axios": "0.16.2",
     "faker": "4.1.0",
     "jquery": "2.2.4",
     "material-design-icons": "3.0.1",

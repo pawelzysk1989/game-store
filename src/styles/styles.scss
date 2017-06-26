@@ -19,6 +19,22 @@ form {
 }
 
 .results {
+  .bookList {
+    display: flex;
+    flex-wrap: wrap;
+    .book {
+      margin: 5px;
+      .card {
+        img {
+          width: 140px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+.results {
   margin: 10px 0;
 }
 
