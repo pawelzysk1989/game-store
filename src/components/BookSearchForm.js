@@ -28,7 +28,7 @@ class BookSearchForm extends React.Component {
       })
       .catch((error) => {
         this.setState({ searching: false});
-        alert(error.response.data.error);
+        alert(error);
       });
   }
 

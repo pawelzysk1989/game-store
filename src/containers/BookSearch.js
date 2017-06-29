@@ -3,12 +3,32 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as bookActions from '../actions/bookSearchActions';
+import * as shoppingActions from '../actions/shoppingCartActions';
 import BookSearchForm from '../components/BookSearchForm';
 import BookSearchResult from '../components/BookSearchResult';
+import ShoppingCart from '../components/ShoppingCart';
+
+const displayNumberOfItems = (cart) => {
+  return (
+    cart.length > 0 && <span className="new badge" data-badge-caption="item(s)">{cart.length}</span>
+  );
+};
 
 export const BookSearch = (props) => {
   return (
     <ul className="collapsible" data-collapsible="expandable">
+      <li>
+        <div className="collapsible-header"><i className="material-icons">shopping_cart</i>Your Basket{displayNumberOfItems(props.shoppingCart)}</div>
+        <div className="collapsible-body">
+        { 
+          props.shoppingCart.length > 0 ?
+          <ShoppingCart
+            shoppingCart={props.shoppingCart}
+            removeBook={props.actions.removeBook}
+          /> : <div className="center">Empty Basket</div>
+        }
+        </div>
+      </li>
       <li>
         <div className="collapsible-header"><i className="material-icons">search</i>Search for Books</div>
         <div className="collapsible-body">
@@ -23,6 +43,7 @@ export const BookSearch = (props) => {
         <div className="collapsible-body">
           <BookSearchResult
             bookSearch={props.bookSearch}
+            addBookAction={props.actions.addBook}
            />
         </div>
       </li>
@@ -32,18 +53,20 @@ export const BookSearch = (props) => {
 
 BookSearch.propTypes = {
   actions: PropTypes.object.isRequired,
-  bookSearch: PropTypes.object.isRequired
+  bookSearch: PropTypes.object.isRequired,
+  shoppingCart: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    bookSearch: state.bookSearch
+    bookSearch: state.bookSearch,
+    shoppingCart: state.shoppingCart
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(bookActions, dispatch)
+    actions: bindActionCreators({...bookActions, ...shoppingActions}, dispatch)
   };
 }
 

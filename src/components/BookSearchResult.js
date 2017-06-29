@@ -10,12 +10,17 @@ class BookSearchResult extends React.Component {
       priceOnSlider: this.props.bookSearch.costRange.val
     };
     this.onSliderChange = this.onSliderChange.bind(this);
+    this.addBook = this.addBook.bind(this);
   }
 
   onSliderChange(value) {
     this.setState({
       priceOnSlider: value
-    })
+    });
+  }
+
+  addBook(i) {
+    this.props.addBookAction(this.props.bookSearch.list[i]);
   }
 
   render() {
@@ -38,7 +43,7 @@ class BookSearchResult extends React.Component {
           <div className="row bookList">{
             list.map((book, i) => {
               return (
-                  <BookSerachResultItem key={i} book={book} priceOnSlider={priceOnSlider} currency={currency} />
+                  <BookSerachResultItem key={book.id} book={book} priceOnSlider={priceOnSlider} currency={currency} addBook={this.addBook} index={i}/>
               );
             })
           }
@@ -51,7 +56,8 @@ class BookSearchResult extends React.Component {
 }
 
 BookSearchResult.propTypes = {
-  bookSearch: PropTypes.object.isRequired
+  bookSearch: PropTypes.object.isRequired,
+  addBookAction: PropTypes.func.isRequired,
 };
 
 export default BookSearchResult;
