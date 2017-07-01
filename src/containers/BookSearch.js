@@ -22,10 +22,13 @@ export const BookSearch = (props) => {
         <div className="collapsible-body">
         { 
           props.shoppingCart.length > 0 ?
-          <ShoppingCart
-            shoppingCart={props.shoppingCart}
-            removeBook={props.actions.removeBook}
-          /> : <div className="center">Empty Basket</div>
+          <div>
+            <ShoppingCart
+              shoppingCart={props.shoppingCart}
+              removeBook={props.actions.removeBook}
+            />
+            <div className="collection-item right"><b>Total: {props.shoppingCart.reduce((prev, item) => prev + item.price, 0)}</b></div>
+          </div> : <div className="center">Empty Basket</div>
         }
         </div>
       </li>

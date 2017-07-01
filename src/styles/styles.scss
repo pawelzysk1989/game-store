@@ -1,3 +1,35 @@
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
 .error {
   color: #ef5350;
 }
@@ -38,4 +70,38 @@ form {
   margin: 10px 0;
 }
 
+.slide-enter {
+  transform: translateX(-100%);
+}
+
+.slide-enter-active {
+  @include animation('slide-in 300ms ease-out forwards');
+}
+
+.slide-leave {
+  transform: translateX(0%);
+}
+
+.slide-leave-active {
+  @include animation('slide-out 300ms ease-out forwards');
+}
+
+
+@include keyframes(slide-in) {
+  from { 
+    transform: translateX(-100%); 
+  }
+  to { 
+    transform: translateX(0%); 
+  }
+}
+
+@include keyframes(slide-out) {
+  from { 
+    transform: translateX(0%); 
+  }
+  to { 
+    transform: translateX(100%); 
+  }
+}
 

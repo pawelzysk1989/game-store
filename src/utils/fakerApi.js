@@ -15,7 +15,7 @@ const fakeResults = (searchedName) => {
     result.push(obj);
   }
   return result;
-}
+};
 
 export const fakeCall = (searchedName) => {
   return new Promise((resolve, reject) => {
@@ -26,4 +26,4 @@ export const fakeCall = (searchedName) => {
       return resolve(fakeResults(searchedName));
     }, DELAY);
   });
-}
+};
