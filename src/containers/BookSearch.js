@@ -27,7 +27,7 @@ export const BookSearch = (props) => {
               shoppingCart={props.shoppingCart}
               removeBook={props.actions.removeBook}
             />
-            <div className="collection-item right"><b>Total: {props.shoppingCart.reduce((prev, item) => prev + item.price, 0)}</b></div>
+            <div className="collection-item right"><b>Total: {(props.shoppingCart.reduce((prev, item) => prev + item.price, 0)).toFixed(2)}</b></div>
           </div> : <div className="center">Empty Basket</div>
         }
         </div>
@@ -47,6 +47,7 @@ export const BookSearch = (props) => {
           <BookSearchResult
             bookSearch={props.bookSearch}
             addBookAction={props.actions.addBook}
+            shoppingCart={props.shoppingCart}
            />
         </div>
       </li>

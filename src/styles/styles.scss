@@ -37,9 +37,11 @@
 form {
   @media screen and (min-width: 500px) {
     display: flex !important;
-    >button {
+    >button.btn {
       flex: 1;
-      margin-top: 22px;
+      margin: 1rem;
+      height: 3rem;
+      line-height: 3rem;
     }
   }
   >button {
@@ -47,6 +49,20 @@ form {
   }
   .textInput {
     flex: 4;
+  }
+}
+
+.collapsible {
+  :nth-child(2) {
+    .collapsible-body {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+  :nth-child(3) {
+    .collapsible-body {
+      padding-top: 0;
+    }
   }
 }
 

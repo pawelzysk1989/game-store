@@ -6,7 +6,7 @@ const Header = () => {
 		<div className="row">
 			<nav>
         <div className="nav-wrapper light-green lighten-1">
-          <Link to={'/'} className="brand-logo center">Books</Link>
+          <Link to={'/'} className="brand-logo center">Book Store</Link>
         </div>
       </nav>
 		</div>

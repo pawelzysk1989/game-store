@@ -25,6 +25,9 @@ class BookSearchForm extends React.Component {
     this.props.bookSearchAction(this.state.bookSearch)
       .then(() => {
         this.setState({ searching: false});
+        $('.collapsible').collapsible('close', 2);
+        $('.collapsible').collapsible('open', 2);
+        $('.collapsible').collapsible('close', 1);
       })
       .catch((error) => {
         this.setState({ searching: false});
@@ -62,7 +65,7 @@ class BookSearchForm extends React.Component {
       <form onSubmit={this.searchForBooks}>
         <TextInput
           name="name"
-          label="Search"
+          label="Book Tilte or Author Name"
           onChange={this.onInputChange}
           value={this.state.bookSearch.name}
           error={this.state.errors.name}

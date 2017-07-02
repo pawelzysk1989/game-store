@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookSearchSlider from './BookSearchSlider';
 import BookSerachResultItem from './BookSerachResultItem';
+import toastr from 'toastr';
 
 class BookSearchResult extends React.Component {
   constructor(props, context) {
@@ -20,7 +21,16 @@ class BookSearchResult extends React.Component {
   }
 
   addBook(i) {
-    this.props.addBookAction(this.props.bookSearch.list[i]);
+    const selectedBook = this.props.bookSearch.list[i];
+    const existingIndex = this.props.shoppingCart.findIndex( elem => elem.id === selectedBook.id);
+    if (existingIndex === -1) {
+      this.props.addBookAction(this.props.bookSearch.list[i]);
+      toastr.success('Book added to your shopping cart');
+    }
+    else {
+      toastr.warning('Book already added');
+    }
+    
   }
 
   render() {
@@ -58,6 +68,7 @@ class BookSearchResult extends React.Component {
 BookSearchResult.propTypes = {
   bookSearch: PropTypes.object.isRequired,
   addBookAction: PropTypes.func.isRequired,
+  shoppingCart: PropTypes.array.isRequired
 };
 
 export default BookSearchResult;
